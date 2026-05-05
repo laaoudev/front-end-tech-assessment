@@ -122,7 +122,7 @@ section li {
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.user-card__name {
+.user-card__title {
 	font-size: 1.3rem;
 	margin: 0;
 }
@@ -139,11 +139,14 @@ section li {
 .user-card__badge {
 	display: inline-block;
 	padding: 0.4rem 0.8rem;
-	background-color: #646cff;
-	color: white;
 	border-radius: 4px;
 	font-size: 0.85rem;
 	font-weight: 600;
+}
+
+.user-card__badge--admin {
+	background-color: #646cff;
+	color: white;
 }
 
 .user-card__body {
@@ -180,7 +183,7 @@ section li {
 	color: #333;
 }
 
-.product-card__top {
+.product-card__header-content {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -192,13 +195,13 @@ section li {
 	flex: 1;
 }
 
-.product-card__name {
+.product-card__title {
 	font-size: 1.2rem;
 	margin: 0 0 0.25rem 0;
 	color: #222;
 }
 
-.product-card__category {
+.product-card__meta {
 	font-size: 0.85rem;
 	margin: 0;
 	color: #666;
@@ -206,9 +209,8 @@ section li {
 	letter-spacing: 0.5px;
 }
 
-.product-card__price-badge {
-	background-color: #ff6b6b;
-	color: white;
+.product-card__badge {
+	background-color: transparent;
 	padding: 0.5rem 1rem;
 	border-radius: 4px;
 	font-weight: bold;
@@ -216,7 +218,12 @@ section li {
 	font-size: 1.1rem;
 }
 
-.product-card__content {
+.product-card__badge--price {
+	background-color: #ff6b6b;
+	color: white;
+}
+
+.product-card__description-section {
 	margin-bottom: 1rem;
 }
 
@@ -227,7 +234,7 @@ section li {
 	line-height: 1.5;
 }
 
-.product-card__meta {
+.product-card__status {
 	display: flex;
 	gap: 1rem;
 	align-items: center;

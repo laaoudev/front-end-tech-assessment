@@ -16,7 +16,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
  * <Button variant="primary" onClick={handleSave}>Save</Button>
  * <Button variant="secondary" disabled>Cancel</Button>
  */
-export const Button: React.FC<ButtonProps> = ({ variant = 'primary', className = '', ...props }) => {
+export const Button: React.FC<ButtonProps> = ({
+	variant = 'primary',
+	className = '',
+	...props
+}) => {
 	const baseClass = 'btn';
 	const variantClass = `btn--${variant}`;
 	const finalClass = `${baseClass} ${variantClass} ${className}`.trim();

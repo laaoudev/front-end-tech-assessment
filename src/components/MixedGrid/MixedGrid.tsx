@@ -8,36 +8,28 @@
 
 import { UserCard } from '../UserCard/UserCard';
 import { ProductCard } from '../ProductCard/ProductCard';
+import { PostCard } from '../PostCard/PostCard';
 import { Grid, GridItem } from '../../shared/Grid/Grid';
 
-export const MixedGrid: React.FC = () => {
-	return (
-		<Grid
-			title="Mixed Cards Preview"
-			subtitle="2 of each card type showing height inconsistency"
-		>
-			<GridItem>
-				<UserCard userId={1} />
-			</GridItem>
-			<GridItem>
-				<ProductCard productId={1} />
-			</GridItem>
-			<GridItem>
-				<div style={{ padding: '1rem', textAlign: 'center', color: '#999' }}>
-					Post Card 1 (To be created)
-				</div>
-			</GridItem>
-			<GridItem>
-				<UserCard userId={2} />
-			</GridItem>
-			<GridItem>
-				<ProductCard productId={2} />
-			</GridItem>
-			<GridItem>
-				<div style={{ padding: '1rem', textAlign: 'center', color: '#999' }}>
-					Post Card 2 (To be created)
-				</div>
-			</GridItem>
-		</Grid>
-	);
-};
+export const MixedGrid: React.FC = () => (
+	<Grid title="Mixed Cards Preview" subtitle="2 of each card type showing height inconsistency">
+		<GridItem>
+			<UserCard userId={1} />
+		</GridItem>
+		<GridItem>
+			<ProductCard productId={1} />
+		</GridItem>
+		<GridItem>
+			<PostCard postId={1} />
+		</GridItem>
+		<GridItem>
+			<UserCard userId={2} />
+		</GridItem>
+		<GridItem>
+			<ProductCard productId={2} />
+		</GridItem>
+		<GridItem>
+			<PostCard postId={2} />
+		</GridItem>
+	</Grid>
+);

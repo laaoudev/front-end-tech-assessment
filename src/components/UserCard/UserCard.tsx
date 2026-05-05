@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Card } from '../../shared/Card/Card';
 import { Button } from '../../shared/Button/Button';
 import { User } from '../../shared/types';
 import '../../shared/Button/Button.css';
@@ -85,74 +86,89 @@ export const UserCard: React.FC<{ userId: number }> = ({ userId }) => {
 	const isAdmin = user.role === 'admin';
 	const createdDate = new Date(user.createdAt).toLocaleDateString();
 
-	return (
-		<div data-testid="user-card" className="user-card">
-			<div className="user-card__header">
-				<h2 className="user-card__name">
-					{isEditing ? (
-						<input
-							data-testid="user-card__name-input"
-							type="text"
-							value={editedName}
-							onChange={(e) => setEditedName(e.target.value)}
-							className="user-card__input"
-						/>
-					) : (
-						user.name
-					)}
-				</h2>
-				{isAdmin && <span className="user-card__badge">{t('userCard.admin')}</span>}
-			</div>
+	const header = (
+		<>
+			<h2 className="user-card__title">
+				{isEditing ? (
+					<input
+						data-testid="user-card__title-input"
+						type="text"
+						value={editedName}
+						onChange={(e) => setEditedName(e.target.value)}
+						className="user-card__input"
+					/>
+				) : (
+					user.name
+				)}
+			</h2>
+			{isAdmin && (
+				<span className="user-card__badge user-card__badge--admin">
+					{t('userCard.admin')}
+				</span>
+			)}
+		</>
+	);
 
-			<div className="user-card__body">
-				<p>
-					<strong>{t('userCard.email')}</strong> {user.email}
-				</p>
-				<p>
-					<strong>{t('userCard.created')}</strong> {createdDate}
-				</p>
-			</div>
-
+	const body = (
+		<div>
+			<p>
+				<strong>{t('userCard.email')}</strong> {user.email}
+			</p>
+			<p>
+				<strong>{t('userCard.created')}</strong> {createdDate}
+			</p>
 			{permissionError && (
 				<div data-testid="user-card__permission-error" className="user-card__error">
 					⚠️ {permissionError}
 				</div>
 			)}
-
-			<div className="user-card__actions">
-				{isEditing ? (
-					<>
-						<Button
-							data-testid="user-card__save-btn"
-							variant="primary"
-							onClick={handleSave}
-						>
-							{t('userCard.save')}
-						</Button>
-						<Button
-							data-testid="user-card__cancel-btn"
-							variant="secondary"
-							onClick={() => {
-								setIsEditing(false);
-								setEditedName(user.name);
-								setPermissionError(null);
-							}}
-						>
-							{t('userCard.cancel')}
-						</Button>
-					</>
-				) : (
-					<Button
-						data-testid="user-card__edit-btn"
-						variant="primary"
-						onClick={() => setIsEditing(true)}
-						disabled={!isAdmin}
-						title={!isAdmin ? t('userCard.onlyAdminsEdit') : t('userCard.editUser')}
-					>
-						{t('userCard.edit')}
-					</Button>
-				)}
-			</div>
 		</div>
+	);
+
+	const footer = (
+		<div className="user-card__actions">
+			{isEditing ? (
+				<>
+					<Button
+						data-testid="user-card__save-btn"
+						variant="primary"
+						onClick={handleSave}
+					>
+						{t('userCard.save')}
+					</Button>
+					<Button
+						data-testid="user-card__cancel-btn"
+						variant="secondary"
+						onClick={() => {
+							setIsEditing(false);
+							setEditedName(user.name);
+							setPermissionError(null);
+						}}
+					>
+						{t('userCard.cancel')}
+					</Button>
+				</>
+			) : (
+				<Button
+					data-testid="user-card__edit-btn"
+					variant="primary"
+					onClick={() => setIsEditing(true)}
+					disabled={!isAdmin}
+					title={!isAdmin ? t('userCard.onlyAdminsEdit') : t('userCard.editUser')}
+				>
+					{t('userCard.edit')}
+				</Button>
+			)}
+		</div>
+	);
+
+	return (
+		<Card
+			header={header}
+			body={body}
+			footer={footer}
+			dataTestId="user-card"
+			className="user-card"
+		/>
 	);
 };

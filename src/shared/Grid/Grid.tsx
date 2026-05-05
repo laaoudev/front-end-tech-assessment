@@ -37,7 +37,7 @@ export const Grid: React.FC<GridProps> = ({ title, subtitle, children, className
  */
 export const GridItem: React.FC<{ children: React.ReactNode; className?: string }> = ({
 	children,
-	className = '',
+	className = ''
 }) => {
 	return <div className={`grid-item ${className}`.trim()}>{children}</div>;
 };

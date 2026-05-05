@@ -1,0 +1,115 @@
+/**
+ * PostCard Styling
+ *
+ * Consistent with UserCard and ProductCard styling.
+ * Uses BEM naming convention.
+ */
+
+.post-card {
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 1.5rem;
+	background-color: #f9f9f9;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.post-card__header {
+	margin-bottom: 1rem;
+}
+
+.post-card__title {
+	margin: 0 0 0.5rem 0;
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #333;
+}
+
+.post-card__meta {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.875rem;
+}
+
+.post-card__author {
+	color: #666;
+	font-weight: 500;
+}
+
+.post-card__badge {
+	display: inline-block;
+	padding: 0.25rem 0.5rem;
+	border-radius: 4px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.post-card__badge--draft {
+	background-color: #ffeaa7;
+	color: #d97706;
+}
+
+.post-card__body {
+	flex: 1;
+	margin-bottom: 1rem;
+}
+
+.post-card__date {
+	margin: 0 0 0.5rem 0;
+	font-size: 0.875rem;
+	color: #999;
+}
+
+.post-card__description {
+	margin: 0;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	color: #555;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.post-card__footer {
+	border-top: 1px solid #eee;
+	padding-top: 1rem;
+}
+
+.post-card__actions {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.post-card__btn--like {
+	padding: 0.5rem 1rem;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background-color: #fff;
+	cursor: pointer;
+	font-size: 0.95rem;
+	font-weight: 500;
+	color: #333;
+	transition: all 0.2s ease;
+}
+
+.post-card__btn--like:hover {
+	background-color: #e8f5e9;
+	border-color: #4caf50;
+	color: #4caf50;
+}
+
+.post-card__btn--like:active {
+	transform: scale(0.98);
+}
+
+.post-card__btn--liked {
+	background-color: #e8f5e9;
+	border-color: #4caf50;
+	color: #4caf50;
+	font-weight: 600;
+}

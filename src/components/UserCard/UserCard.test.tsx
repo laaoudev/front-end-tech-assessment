@@ -136,7 +136,7 @@ describe('UserCard (Before Refactoring)', () => {
 		fireEvent.click(editBtn);
 
 		// Input should appear in edit mode
-		const input = screen.getByTestId('user-card__name-input') as HTMLInputElement;
+		const input = screen.getByTestId('user-card__title-input') as HTMLInputElement;
 		expect(input).toBeInTheDocument();
 		expect(input.value).toBe('John Doe');
 
@@ -159,7 +159,7 @@ describe('UserCard (Before Refactoring)', () => {
 		});
 
 		// Should return to display mode
-		expect(screen.queryByTestId('user-card__name-input')).not.toBeInTheDocument();
+		expect(screen.queryByTestId('user-card__title-input')).not.toBeInTheDocument();
 	});
 
 	/**
@@ -237,7 +237,7 @@ describe('UserCard (Before Refactoring)', () => {
 		fireEvent.click(editBtn);
 
 		// Change name
-		const input = screen.getByTestId('user-card__name-input') as HTMLInputElement;
+		const input = screen.getByTestId('user-card__title-input') as HTMLInputElement;
 		fireEvent.change(input, { target: { value: 'Alice New' } });
 
 		// Click Save
@@ -251,6 +251,6 @@ describe('UserCard (Before Refactoring)', () => {
 		});
 
 		// Should remain in edit mode
-		expect(screen.getByTestId('user-card__name-input')).toBeInTheDocument();
+		expect(screen.getByTestId('user-card__title-input')).toBeInTheDocument();
 	});
 });

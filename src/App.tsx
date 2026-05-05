@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { MixedGrid } from './components/MixedGrid/MixedGrid';
 import { UserGrid } from './components/UserGrid/UserGrid';
 import { ProductGrid } from './components/ProductGrid/ProductGrid';
+import { PostGrid } from './components/PostGrid/PostGrid';
 import './App.css';
 
 const App = () => {
@@ -96,6 +97,7 @@ const App = () => {
 					<p>{t('dataGlance.description')}</p>
 					<UserGrid />
 					<ProductGrid />
+					<PostGrid />
 				</section>
 				<section>
 					<h2>{t('portfolio.title')}</h2>

@@ -35,7 +35,11 @@
     "no-console": "warn",
     "no-promise-executor-return": "warn",
     "no-plusplus": "warn",
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "no-tabs": "off",
+    "@typescript-eslint/indent": ["error", "tab"],
+    "react/jsx-indent": ["error", "tab"],
+    "react/jsx-indent-props": ["error", "tab"]
   }
 }
 

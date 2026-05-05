@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Card } from '../../shared/Card/Card';
 import { Button } from '../../shared/Button/Button';
 import { Product } from '../../shared/types';
 import '../../shared/Button/Button.css';
@@ -54,7 +55,7 @@ export const ProductCard: React.FC<{ productId: number }> = ({ productId }) => {
 			const response = await fetch(`/api/products/${productId}`, {
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ stock: editedStock })
+				body: JSON.stringify({ stock: editedStock }),
 			});
 
 			if (!response.ok) throw new Error('Product bijwerken mislukt');
@@ -77,29 +78,36 @@ export const ProductCard: React.FC<{ productId: number }> = ({ productId }) => {
 			</div>
 		);
 	}
-	if (!product)
+	if (!product) {
 		return <div data-testid="product-card-not-found">{t('productCard.notFound')}</div>;
+	}
 
 	// Product-specific logic
 	const isInStock = product.stock > 0;
 	const formattedPrice = `$${product.price.toFixed(2)}`;
 
-	return (
-		<div data-testid="product-card" className="product-card">
-			<div className="product-card__top">
-				<div className="product-card__title-section">
-					<h3 className="product-card__name">{product.name}</h3>
-					<p className="product-card__category">{product.category}</p>
-				</div>
-				<div className="product-card__price-badge">{formattedPrice}</div>
+	const header = (
+		<div className="product-card__header-content">
+			<div className="product-card__title-section">
+				<h3 className="product-card__title">{product.name}</h3>
+				<p className="product-card__meta">{product.category}</p>
 			</div>
+			<div className="product-card__badge product-card__badge--price">{formattedPrice}</div>
+		</div>
+	);
 
-			<div className="product-card__content">
+	const body = (
+		<div>
+			<div className="product-card__description-section">
 				<p className="product-card__description">{product.description}</p>
 
-				<div className="product-card__meta">
+				<div className="product-card__status">
 					<span
-						className={`product-card__stock ${isInStock ? 'product-card__stock--available' : 'product-card__stock--sold-out'}`}
+						className={`product-card__stock ${
+							isInStock
+								? 'product-card__stock--available'
+								: 'product-card__stock--sold-out'
+						}`}
 					>
 						{isInStock ? t('productCard.inStock') : t('productCard.soldOut')}
 					</span>
@@ -129,38 +137,50 @@ export const ProductCard: React.FC<{ productId: number }> = ({ productId }) => {
 					</span>
 				)}
 			</div>
-
-			<div className="product-card__actions">
-				{isEditing ? (
-					<>
-						<Button
-							data-testid="product-card-save-btn"
-							variant="primary"
-							onClick={handleSave}
-						>
-							{t('productCard.save')}
-						</Button>
-						<Button
-							data-testid="product-card-cancel-btn"
-							variant="secondary"
-							onClick={() => {
-								setIsEditing(false);
-								setEditedStock(product.stock);
-							}}
-						>
-							{t('productCard.cancel')}
-						</Button>
-					</>
-				) : (
-					<Button
-						data-testid="product-card-edit-btn"
-						variant="primary"
-						onClick={() => setIsEditing(true)}
-					>
-						{t('productCard.editStock')}
-					</Button>
-				)}
-			</div>
 		</div>
+	);
+
+	const footer = (
+		<div className="product-card__actions">
+			{isEditing ? (
+				<>
+					<Button
+						data-testid="product-card-save-btn"
+						variant="primary"
+						onClick={handleSave}
+					>
+						{t('productCard.save')}
+					</Button>
+					<Button
+						data-testid="product-card-cancel-btn"
+						variant="secondary"
+						onClick={() => {
+							setIsEditing(false);
+							setEditedStock(product.stock);
+						}}
+					>
+						{t('productCard.cancel')}
+					</Button>
+				</>
+			) : (
+				<Button
+					data-testid="product-card-edit-btn"
+					variant="primary"
+					onClick={() => setIsEditing(true)}
+				>
+					{t('productCard.editStock')}
+				</Button>
+			)}
+		</div>
+	);
+
+	return (
+		<Card
+			header={header}
+			body={body}
+			footer={footer}
+			dataTestId="product-card"
+			className="product-card"
+		/>
 	);
 };

@@ -63,6 +63,12 @@
 		"cancel": "Annuleren",
 		"editStock": "Voorraad Bewerken"
 	},
+	"postCard": {
+		"loading": "Bezig met laden van post...",
+		"error": "Fout:",
+		"notFound": "Blogpost niet gevonden",
+		"draft": "Concept"
+	},
 	"mixedGrid": {
 		"title": "Gemengde Kaarten Grid",
 		"description": "Hieronder zijn alle drie kaart types gemengd in één grid."
